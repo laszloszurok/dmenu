@@ -1,0 +1,16 @@
+diff --git a/dmenu.c b/dmenu.c
+index 65f25ce..80475c2 100644
+--- a/dmenu.c
++++ b/dmenu.c
+@@ -153,8 +153,10 @@ drawmenu(void)
+ 
+ 	if (lines > 0) {
+ 		/* draw vertical list */
+-		for (item = curr; item != next; item = item->right)
++		int i = 0;
++		for (item = curr; item != next; item = item->right, i++)
+ 			drawitem(item, x, y += bh, mw - x);
++       XResizeWindow(dpy, win, mw, (i + 1) * bh);
+ 	} else if (matches) {
+ 		/* draw horizontal list */
+ 		x += inputw;
